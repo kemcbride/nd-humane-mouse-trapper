@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8xxa1k0twwr8"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_87bdv"]
+[ext_resource type="PackedScene" uid="uid://deq1vjavnaqhk" path="res://mouse.tscn" id="1_haa73"]
+[ext_resource type="AudioStream" uid="uid://0maqm15o4ahc" path="res://assets/sound/HumaneMouseTrapper Edit 1 Cowbell 150.ogg" id="2_s810q"]
+[ext_resource type="Script" path="res://test_player.gd" id="3_7uwfx"]
+[ext_resource type="PackedScene" uid="uid://b763vuo5412ot" path="res://maze.tscn" id="4_ppllt"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_87bdv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_s810q")
+volume_db = 9.398
+autoplay = true
+script = ExtResource("3_7uwfx")
+
+[node name="Maze" parent="." instance=ExtResource("4_ppllt")]
+position = Vector2(100, 500)
+
+[node name="Mouse" parent="." instance=ExtResource("1_haa73")]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://jdefjinlsffm"]
+
+[ext_resource type="Script" path="res://cell.gd" id="1_b55nk"]
+[ext_resource type="Texture2D" uid="uid://biehmy0rhwv2r" path="res://assets/image/cell1.png" id="1_ldvqn"]
+[ext_resource type="Texture2D" uid="uid://c32nhawqisk7q" path="res://assets/image/cell2.png" id="2_7liim"]
+[ext_resource type="Texture2D" uid="uid://do8bqtf6lu1ep" path="res://assets/image/cell3.png" id="3_epetl"]
+[ext_resource type="Texture2D" uid="uid://de1gtasiaqofi" path="res://assets/image/cell4.png" id="4_ykn8q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8a4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ldvqn")
+}],
+"loop": true,
+"name": &"cell1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7liim")
+}],
+"loop": true,
+"name": &"cell2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_epetl")
+}],
+"loop": true,
+"name": &"cell3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ykn8q")
+}],
+"loop": true,
+"name": &"cell4",
+"speed": 5.0
+}]
+
+[node name="Cell" type="Node2D"]
+script = ExtResource("1_b55nk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, 60)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_v8a4l")
+animation = &"cell4"

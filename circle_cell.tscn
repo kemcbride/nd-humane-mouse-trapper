@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnmirr6ceplpb"]
+
+[ext_resource type="Script" path="res://circle_cell.gd" id="1_grxvi"]
+[ext_resource type="Texture2D" uid="uid://cnj53b61ui8nu" path="res://assets/image/circle_cell.png" id="1_pj3cu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q72tu"]
+size = Vector2(114, 115)
+
+[sub_resource type="Animation" id="Animation_qr1p8"]
+resource_name = "rotate_clockwise"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_anfgu"]
+resource_name = "rotate_counterclockwise"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hs6c"]
+_data = {
+"rotate_clockwise": SubResource("Animation_qr1p8"),
+"rotate_counterclockwise": SubResource("Animation_anfgu")
+}
+
+[node name="CircleCell" type="Node2D"]
+script = ExtResource("1_grxvi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(60, 60)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_pj3cu")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+position = Vector2(0, -4.16667)
+scale = Vector2(8.33333, 8.33333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_q72tu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hs6c")
+}
+
+[connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]

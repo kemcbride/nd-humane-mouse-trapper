@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://deq1vjavnaqhk"]
+
+[ext_resource type="Texture2D" uid="uid://d35ms3qx1d7nf" path="res://assets/image/mouse1.png" id="1_b3v0k"]
+[ext_resource type="Script" path="res://mouse.gd" id="2_ag2q1"]
+
+[sub_resource type="Animation" id="Animation_npbxf"]
+resource_name = "Rock"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MousePlayer/AnimatedSprite2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.392699, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdvfr"]
+_data = {
+"Rock": SubResource("Animation_npbxf")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jubgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b3v0k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mouse" type="Node2D"]
+script = ExtResource("2_ag2q1")
+
+[node name="MousePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mdvfr")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MousePlayer"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_jubgq")
